@@ -13,7 +13,17 @@ npm run build    # outputs the site to dist/
 npm run preview  # serve the built dist/ locally
 ```
 
-Requires Node 18+ (developed on Node 22). Deploy the `dist/` folder to any static host (Cloudflare Pages, Netlify, Vercel, GitHub Pages, plain S3).
+Requires Node 18+ (developed on Node 22).
+
+## Going live
+
+The site is live at **https://slaughterfest.surgeculture.com**. It's served by the Cloudflare Worker `slaughterfest` (`wrangler.jsonc`), and the bare domain `surgeculture.com` currently forwards here.
+
+**Whatever is on `main` is the live site.** Cloudflare Workers Builds watches this repo: every push to `main` runs `npm run build`, then `npx wrangler deploy`, and the change is live about a minute later. Check the **Workers Builds: slaughterfest** status on the commit in GitHub. There's nothing else to upload.
+
+- Work on a branch and merge into `main` when you want it live.
+- Undo a bad release: revert the commit on `main` (it redeploys), or roll back the `slaughterfest` Worker's deployment in the Cloudflare dashboard.
+- `npm run deploy` deploys your local `dist/` by hand (needs `npx wrangler login`). Only for emergencies: the next push to `main` overwrites it.
 
 ## Where to change things
 

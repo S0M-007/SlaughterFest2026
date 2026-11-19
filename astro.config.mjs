@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 
-// Fully static site. Set `site` to the production URL once known (enables canonical + social-share URLs).
+// Fully static site. `site` is the production URL (used for the canonical and social-share URLs).
 export default defineConfig({
-  // site: 'https://example.com',
+  site: 'https://slaughterfest.surgeculture.com',
   build: { inlineStylesheets: 'always' },
 });
