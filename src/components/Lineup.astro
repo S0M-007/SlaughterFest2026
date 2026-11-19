@@ -1,6 +1,6 @@
 ---
 import bands from '../data/bands.json';
-import { asset } from '../lib/site';
+import { asset, manifest } from '../lib/site';
 const num = (i: number) => String(i + 1).padStart(2, '0');
 ---
 <section class="sec" id="lineup" aria-labelledby="lh">
@@ -10,22 +10,19 @@ const num = (i: number) => String(i + 1).padStart(2, '0');
   </div>
   <ol class="wall">
     {bands.map((b, i) => {
-      const photoStyle = `object-position:${b.photo.position}`;
-      const card = 'card' in b.photo && b.photo.card;
-      const crop = b.logo && 'crop' in b.logo ? b.logo.crop : undefined;
+      const photo = manifest[b.photo.src];
+      const logo = b.logo ? manifest[b.logo.src] : null;
+      const pos = `object-position:${b.photo.position}`;
       return (
-        <li class:list={['row', 'rv', { kr: card }]}>
-          <div class:list={['ph', { card }]} aria-hidden="true">
-            <img src={asset(b.photo.src)} alt="" width={b.photo.width} height={b.photo.height} style={photoStyle} loading="lazy" />
+        <li class="row rv" style={`--ar:${(photo.wide.width / photo.wide.height).toFixed(3)}`}>
+          <!-- Desktop hover photo: src is filled in on first hover/focus (see Base.astro), so nothing is downloaded until needed. -->
+          <div class="full" aria-hidden="true">
+            <img data-src={asset(photo.wide.src)} alt="" width={photo.wide.width} height={photo.wide.height} style={pos} decoding="async" />
           </div>
           <div class="row-in">
             <div class="logo-slot">
-              {b.logo ? (
-                crop ? (
-                  <div class:list={['crop', crop]}><img src={asset(b.logo.src)} width={b.logo.width} height={b.logo.height} alt="" /></div>
-                ) : (
-                  <img src={asset(b.logo.src)} width={b.logo.width} height={b.logo.height} alt="" />
-                )
+              {logo ? (
+                <img src={asset(logo.src)} width={logo.width} height={logo.height} alt="" loading="lazy" decoding="async" />
               ) : (
                 <p class="name-text" aria-hidden="true">{b.name}</p>
               )}
@@ -36,8 +33,8 @@ const num = (i: number) => String(i + 1).padStart(2, '0');
               <p class:list={['desc', { tba: !b.descriptor }]}>{b.descriptor ?? 'Genre [TBA]'}</p>
               <p class:list={['fact', { 'tba-b': !b.fact }]}>{b.fact ?? 'More details [TBA]'}</p>
             </div>
-            <div class:list={['mob-ph', { card }]}>
-              <img src={asset(b.photo.src)} alt={`${b.name} band photo`} width={b.photo.width} height={b.photo.height} style={photoStyle} loading="lazy" />
+            <div class="mob-ph">
+              <img src={asset(photo.mob.src)} alt={`${b.name} band photo`} width={photo.mob.width} height={photo.mob.height} loading="lazy" decoding="async" />
             </div>
           </div>
           <span class="num" aria-hidden="true">{num(i)}</span>

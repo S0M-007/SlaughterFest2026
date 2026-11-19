@@ -1,9 +1,10 @@
 ---
-import { asset, site } from '../lib/site';
+import { asset, manifest, site } from '../lib/site';
+const logo = manifest['logos/slaughterfest-white.png'][660];
 ---
 <footer>
   <div>
-    <p class="big"><img src={asset('logos/slaughterfest-white.png')} alt={site.name} width="1600" height="659" /></p>
+    <p class="big"><img src={asset(logo.src)} alt={site.name} width={logo.width} height={logo.height} loading="lazy" decoding="async" /></p>
     <p>&copy; {site.year} {site.name} &middot; Produced by {site.producedBy}</p>
     <p>{site.venue}, {site.city} &middot; {site.dateLong}</p>
     <p class="small">Details subject to change.</p>

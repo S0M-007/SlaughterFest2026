@@ -42,9 +42,22 @@ src/
   layouts/      Base.astro (head, fonts, small script)
   styles/       global.css (palette tokens at the top)
   pages/        index.astro
-public/assets/  logos, band logos, photos, partner logos, og.jpg
+assets-src/     master images: edit or replace these
+public/assets/  generated web images + og.jpg (do not edit by hand: run `npm run assets`)
+tools/          optimise-assets.mjs (the image pipeline)
 design/         research, design directions, palette, early prototypes (not part of the build)
 ```
+
+## Images and performance
+
+Built to be fast on weak PCs and slow connections: about 1.5 MB in total, 12 requests and roughly 0.5 MB for the first screen, with no runtime filters, blend modes, masks or blurs.
+
+- **Images are baked.** `npm run assets` turns the masters in `assets-src/` into WebP files in `public/assets/` and writes `src/data/manifest.json`. Tints, photo grading, the embossed ring and burst, fades and the logo's shadow are all rendered into the pictures, so the browser only paints plain images. Re-run it after changing a master image or adding a band.
+- **Add a band photo or logo:** put the file in `assets-src/photos/` (16:9 works best) or `assets-src/bands/`, point `src/data/bands.json` at it, then run `npm run assets`.
+- **Lazy by default.** The big desktop hover photos download only when you first hover a band (and are warmed up one by one on good connections). Phones never download them.
+- **Fonts:** self-hosted, Latin subset only.
+- **"Lite" mode** switches on by itself for devices with 2 cores or fewer, 2 GB RAM or less, Save-Data or a 2G connection, and with `prefers-reduced-motion`: no animations or transitions and no decorative burst.
+- **Hosting:** `public/_headers` sets long cache times (Cloudflare Pages and Netlify read it).
 
 ## Design
 

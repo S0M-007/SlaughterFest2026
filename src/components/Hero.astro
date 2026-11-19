@@ -1,10 +1,29 @@
 ---
-import { asset, site, ticketHref, ticketAttrs } from '../lib/site';
+import { asset, manifest, site, ticketHref, ticketAttrs } from '../lib/site';
+const logo = manifest['logos/slaughterfest-white.png'];
+const sb = manifest['partners/skillbox-white.png'];
+const burst = manifest['art/burst'];
+const ring = manifest['art/ring'];
 ---
 <section class="hero" id="top" aria-labelledby="h1">
-  <div class="block" aria-hidden="true"></div>
   <p class="stamp">{site.producedBy} presents</p>
-  <h1 id="h1"><img src={asset('logos/slaughterfest-white.png')} width="1600" height="659" alt={site.name} /></h1>
+  <div class="logo-wrap">
+    <!-- Back layer: the client burst drawing, mirrored to a full sunburst. Front layer: the client ring drawing.
+         Both are pre-rendered (embossed, tinted, faded) by tools/optimise-assets.mjs, so they cost nothing to paint. -->
+    <div class="art" aria-hidden="true">
+      <div class="burst-emboss"><img class="burst" src={asset(burst.src)} alt="" width={burst.width} height={burst.height} decoding="async" fetchpriority="low" /></div>
+      <div class="ring-emboss"><img class="ring" src={asset(ring.src)} alt="" width={ring.width} height={ring.height} decoding="async" fetchpriority="low" /></div>
+    </div>
+    <h1 id="h1">
+      <img
+        src={asset(logo[1320].src)}
+        srcset={`${asset(logo[660].src)} 660w, ${asset(logo[1320].src)} 1320w`}
+        sizes="(min-width: 1400px) 1320px, calc(100vw - 32px)"
+        width={logo[1320].width} height={logo[1320].height}
+        alt={site.name} fetchpriority="high" decoding="async"
+      />
+    </h1>
+  </div>
   <div class="hero-facts">
     <div>
       <p class="when">{site.dateLabel}</p>
@@ -13,7 +32,7 @@ import { asset, site, ticketHref, ticketAttrs } from '../lib/site';
       <p class="days" id="days" data-date={site.date} aria-live="off"><b id="daysN"></b>days to go</p>
     </div>
     <div class="cta-stack">
-      <a class="sb" href={ticketHref} {...ticketAttrs}><img src={asset('partners/skillbox-white.png')} width="500" height="500" alt={`Book tickets on ${site.ticketPartner}`} /></a>
+      <a class="sb" href={ticketHref} {...ticketAttrs}><img src={asset(sb.src)} width="112" height="112" alt={`Book tickets on ${site.ticketPartner}`} decoding="async" /></a>
       <div class="cta-col">
         <a class="btn" href={ticketHref} {...ticketAttrs}>Book tickets</a>
         <a class="btn ghost" href="#lineup">See the lineup</a>

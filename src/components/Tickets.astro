@@ -1,9 +1,10 @@
 ---
-import { asset, site, ticketHref, ticketAttrs } from '../lib/site';
+import { asset, manifest, site, ticketHref, ticketAttrs } from '../lib/site';
+const sb = manifest['partners/skillbox-white.png'];
 ---
 <section class="tix" id="tickets" aria-labelledby="th">
   <div class="tix-in">
-    <a class="sbbig" href={ticketHref} {...ticketAttrs}><img src={asset('partners/skillbox-white.png')} width="500" height="500" alt={`Book tickets on ${site.ticketPartner}`} /></a>
+    <a class="sbbig" href={ticketHref} {...ticketAttrs}><img src={asset(sb.src)} width={sb.width} height={sb.height} alt={`Book tickets on ${site.ticketPartner}`} loading="lazy" decoding="async" /></a>
     <div>
       <h2 id="th">Tickets</h2>
       <p>Tickets via {site.ticketPartner}.{site.ticketUrl ? '' : ' Link coming soon.'}</p>
