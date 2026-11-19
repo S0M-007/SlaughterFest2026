@@ -1,0 +1,14 @@
+---
+import { asset, site, ticketHref, ticketAttrs } from '../lib/site';
+---
+<section class="tix" id="tickets" aria-labelledby="th">
+  <div class="tix-in">
+    <a class="sbbig" href={ticketHref} {...ticketAttrs}><img src={asset('partners/skillbox-white.png')} width="500" height="500" alt={`Book tickets on ${site.ticketPartner}`} /></a>
+    <div>
+      <h2 id="th">Tickets</h2>
+      <p>Tickets via {site.ticketPartner}.{site.ticketUrl ? '' : ' Link coming soon.'}</p>
+      <p class="price">Prices <span>{site.prices ?? '[TBA]'}</span></p>
+      <a class="btn" href={ticketHref} {...ticketAttrs}>Book tickets</a>
+    </div>
+  </div>
+</section>

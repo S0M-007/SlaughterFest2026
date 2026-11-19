@@ -1,0 +1,23 @@
+---
+import partners from '../data/partners.json';
+import { asset, site } from '../lib/site';
+---
+<section class="partners" aria-labelledby="ph">
+  <h2 id="ph">Partners</h2>
+  <ul class="pstrip">
+    {partners.map((p) => (
+      <li>
+        {p.logo ? (
+          p.url ? (
+            <a class:list={{ chip: p.chip }} href={p.url} target="_blank" rel="noopener"><img src={asset(p.logo)} alt={p.alt} loading="lazy" /></a>
+          ) : (
+            <span class:list={['logo', { chip: p.chip }]}><img src={asset(p.logo)} alt={p.alt} loading="lazy" /></span>
+          )
+        ) : (
+          <span class="txt">{p.name}</span>
+        )}
+      </li>
+    ))}
+  </ul>
+  <p class="produced">Produced by {site.producedBy}</p>
+</section>

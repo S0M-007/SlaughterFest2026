@@ -1,0 +1,49 @@
+---
+import bands from '../data/bands.json';
+import { asset } from '../lib/site';
+const num = (i: number) => String(i + 1).padStart(2, '0');
+---
+<section class="sec" id="lineup" aria-labelledby="lh">
+  <div class="sec-h">
+    <h2 id="lh">The <em>Lineup</em></h2>
+    <p>{bands.length} bands &middot; One night</p>
+  </div>
+  <ol class="wall">
+    {bands.map((b, i) => {
+      const photoStyle = `object-position:${b.photo.position}`;
+      const card = 'card' in b.photo && b.photo.card;
+      const crop = b.logo && 'crop' in b.logo ? b.logo.crop : undefined;
+      return (
+        <li class:list={['row', 'rv', { kr: card }]}>
+          <div class:list={['ph', { card }]} aria-hidden="true">
+            <img src={asset(b.photo.src)} alt="" width={b.photo.width} height={b.photo.height} style={photoStyle} loading="lazy" />
+          </div>
+          <div class="row-in">
+            <div class="logo-slot">
+              {b.logo ? (
+                crop ? (
+                  <div class:list={['crop', crop]}><img src={asset(b.logo.src)} width={b.logo.width} height={b.logo.height} alt="" /></div>
+                ) : (
+                  <img src={asset(b.logo.src)} width={b.logo.width} height={b.logo.height} alt="" />
+                )
+              ) : (
+                <p class="name-text" aria-hidden="true">{b.name}</p>
+              )}
+            </div>
+            <div class="info">
+              <h3 tabindex="0">{b.name}</h3>
+              <p class:list={['city', { 'tba-b': !b.city }]}>{b.city ?? '[TBA]'}</p>
+              <p class:list={['desc', { tba: !b.descriptor }]}>{b.descriptor ?? 'Genre [TBA]'}</p>
+              <p class:list={['fact', { 'tba-b': !b.fact }]}>{b.fact ?? 'More details [TBA]'}</p>
+            </div>
+            <div class:list={['mob-ph', { card }]}>
+              <img src={asset(b.photo.src)} alt={`${b.name} band photo`} width={b.photo.width} height={b.photo.height} style={photoStyle} loading="lazy" />
+            </div>
+          </div>
+          <span class="num" aria-hidden="true">{num(i)}</span>
+        </li>
+      );
+    })}
+  </ol>
+  <p class="note">Billing order TBA</p>
+</section>

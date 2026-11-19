@@ -1,0 +1,37 @@
+---
+import bands from '../data/bands.json';
+import { site } from '../lib/site';
+const tba = '[TBA]';
+const names = bands.map((b) => b.name);
+const list = names.length > 1 ? `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}` : names[0];
+const cells = [
+  { label: 'Date', html: 'Saturday<br>5 December 2026' },
+  { label: 'Venue', html: `${site.venue}<br>${site.city}` },
+  { label: 'Doors', text: site.doors },
+  { label: 'Age policy', text: site.agePolicy },
+  { label: 'Ticket prices', text: site.prices },
+  { label: 'Getting there', text: site.gettingThere },
+];
+---
+<section class="sec" id="info" aria-labelledby="ih">
+  <div class="sec-h">
+    <h2 id="ih">The <em>Facts</em></h2>
+    <p id="venue">Venue &middot; {site.venue}, {site.city}</p>
+  </div>
+  <div class="info-grid">
+    <dl>
+      {cells.map((c) => (
+        <div class="cell rv">
+          <dt>{c.label}</dt>
+          {c.html ? <dd set:html={c.html} /> : <dd class="t">{c.text ?? tba}</dd>}
+        </div>
+      ))}
+    </dl>
+  </div>
+  <div class="faq rv">
+    <details><summary>When and where is it?</summary><p>{site.dateLong}, at {site.venue}, {site.city}. Produced by {site.producedBy}.</p></details>
+    <details><summary>Who is playing?</summary><p>{bands.length} bands are confirmed: {list}. Billing order is TBA.</p></details>
+    <details><summary>Where do I get tickets?</summary><p>Tickets go through {site.ticketPartner}. {site.ticketUrl ? 'Use any Book tickets button on this page.' : 'The link is coming soon.'} Prices are {site.prices ?? tba}.</p></details>
+    <details><summary>What time do doors open, and is there an age limit?</summary><p>Door times: {site.doors ?? tba}. Age policy: {site.agePolicy ?? tba}. We will post both here once confirmed.</p></details>
+  </div>
+</section>

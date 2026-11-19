@@ -1,0 +1,12 @@
+---
+import { asset, site } from '../lib/site';
+---
+<footer>
+  <div>
+    <p class="big"><img src={asset('logos/slaughterfest-white.png')} alt={site.name} width="1600" height="659" /></p>
+    <p>&copy; {site.year} {site.name} &middot; Produced by {site.producedBy}</p>
+    <p>{site.venue}, {site.city} &middot; {site.dateLong}</p>
+    <p class="small">Details subject to change.</p>
+  </div>
+  <a href="#top">Back to top</a>
+</footer>

@@ -1,0 +1,56 @@
+[
+  {
+    "slug": "kryptos",
+    "name": "Kryptos",
+    "city": "Bangalore",
+    "descriptor": "Traditional heavy metal in the spirit of the 80s.",
+    "fact": "Formed 1998. First Indian heavy metal band at Wacken Open Air (2013). Opened for Iron Maiden in Bangalore, 2009.",
+    "logo": { "src": "bands/kryptos-logo-bw.png", "width": 800, "height": 489 },
+    "photo": { "src": "photos/kryptos.jpg", "width": 1400, "height": 951, "position": "50% 40%", "card": true }
+  },
+  {
+    "slug": "gutslit",
+    "name": "Gutslit",
+    "city": "Mumbai",
+    "descriptor": "Brutal death metal and grindcore.",
+    "fact": "Active nearly two decades. Toured 25+ countries. New single “I, Berzerker” (2026); fourth album due 2027.",
+    "logo": { "src": "bands/gutslit-logo.png", "width": 900, "height": 398 },
+    "photo": { "src": "photos/gutslit.jpg", "width": 1400, "height": 1935, "position": "50% 20%" }
+  },
+  {
+    "slug": "astrit",
+    "name": "Astrit",
+    "city": "Mumbai",
+    "descriptor": "“Heavy Hindustani Music”: progressive metalcore with Hindustani classical melody.",
+    "fact": "Four-piece.",
+    "logo": null,
+    "photo": { "src": "photos/astrit.jpg", "width": 1080, "height": 1080, "position": "50% 100%" }
+  },
+  {
+    "slug": "fallen-letters",
+    "name": "Fallen Letters",
+    "city": null,
+    "descriptor": null,
+    "fact": null,
+    "logo": { "src": "bands/fallen-letters-logo.png", "width": 900, "height": 429 },
+    "photo": { "src": "photos/fallen-letters.jpg", "width": 1400, "height": 2100, "position": "50% 35%" }
+  },
+  {
+    "slug": "backrooms",
+    "name": "Backrooms",
+    "city": null,
+    "descriptor": null,
+    "fact": null,
+    "logo": { "src": "bands/backrooms-logo.png", "width": 782, "height": 434 },
+    "photo": { "src": "photos/backrooms.jpg", "width": 1400, "height": 1050, "position": "50% 50%" }
+  },
+  {
+    "slug": "haiku-like-imagination",
+    "name": "Haiku Like Imagination",
+    "city": null,
+    "descriptor": null,
+    "fact": null,
+    "logo": { "src": "bands/hli-logo.png", "width": 560, "height": 264 },
+    "photo": { "src": "photos/hli.jpg", "width": 1400, "height": 935, "position": "50% 50%" }
+  }
+]
